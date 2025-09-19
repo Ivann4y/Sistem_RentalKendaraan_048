@@ -22,10 +22,14 @@ namespace Sistem_RentalKendaraan_048
             // };
 
             Kendaraan mobil = new Kendaraan("Honda Jazz", "Mobil", 2020);
-            Kendaraan motor = new Kendaraan("Vario", "Motor", 2019);
-
             mobil.TampilkanInfo();
+
+            // Tidak Valid
+            Kendaraan motor = new Kendaraan("", "", 1999);
             motor.TampilkanInfo();
+
+            // Kendaraan motor = new Kendaraan("Vario", "Motor", 2019);
+            // motor.TampilkanInfo();
         }
     }
 }   

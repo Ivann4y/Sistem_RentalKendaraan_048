@@ -2,21 +2,55 @@ namespace Sistem_RentalKendaraan_048
 {
     class Kendaraan
     {
-        public string? merk { get; set; }
-        public string jenis { get; set; } = string.Empty;
-        public int tahun { get; set; }
+        private string _merk = string.Empty;
+        private string _jenis = string.Empty;
+        private int _tahun;
+
+        public string Merk
+        {
+            get => _merk;
+            set => _merk = string.IsNullOrWhiteSpace(value) ? "Merk tidak boleh kosong!" : value;
+        }
+
+        public string Jenis
+        {
+            get => _jenis;
+            set => _jenis = string.IsNullOrWhiteSpace(value) ? "Jenis tidak boleh kosong!" : value;
+            // Jika ga ada kondisi 
+            // set => _jenis = value;
+        }
+
+        public int Tahun
+        {
+            get => _tahun;
+            set => _tahun = value < 2000 ? 0 : value;
+        }
 
         // Constructor
         public Kendaraan(string merk, string jenis, int tahun)
         {
-            this.merk = merk;
-            this.jenis = jenis;
-            this.tahun = tahun;
+            Merk = merk;
+            Jenis = jenis;
+            Tahun = tahun;
         }
-        
+
         public void TampilkanInfo()
         {
-            Console.WriteLine($"Merk: {merk}, Jenis: {jenis}, Tahun: {tahun}");
+            if (_tahun == 0)
+            {
+                Console.WriteLine("Tahun kendaraan minimal 2000!");
+            }
+
+            if (Merk == "Merk tidak boleh kosong!" && Jenis == "Jenis tidak boleh kosong!" && Tahun == 0)
+            {
+                Console.WriteLine("Data kendaraan tidak valid!");
+            }
+
+            string merkDisplay = string.IsNullOrWhiteSpace(Merk) ? "NULL" : Merk;
+            string jenisDisplay = string.IsNullOrWhiteSpace(Jenis) ? "NULL" : Jenis;
+            string tahunDisplay = Tahun < 2000 ? "NULL" : Tahun.ToString();
+
+            Console.WriteLine($"Merk: {merkDisplay}, Jenis: {jenisDisplay}, Tahun: {tahunDisplay}\n");
         }
     }
 }
