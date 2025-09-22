@@ -34,7 +34,8 @@ namespace Sistem_RentalKendaraan_048
             Tahun = tahun;
         }
 
-        public void TampilkanInfo()
+        // Overriding method
+        public virtual void TampilkanInfo()
         {
             if (_tahun == 0)
             {
@@ -50,7 +51,26 @@ namespace Sistem_RentalKendaraan_048
             string jenisDisplay = string.IsNullOrWhiteSpace(Jenis) ? "NULL" : Jenis;
             string tahunDisplay = Tahun < 2000 ? "NULL" : Tahun.ToString();
 
-            Console.WriteLine($"Merk: {merkDisplay}, Jenis: {jenisDisplay}, Tahun: {tahunDisplay}\n");
+            Console.WriteLine($"Merk: {merkDisplay}, Jenis: {jenisDisplay}, Tahun: {tahunDisplay}");
+        }
+
+        // overloading method (method dengan nama sama, tapi parameter berbeda)
+        public void TampilkanInfo(string tambahanInfo)
+        {
+            // TampilkanInfo();
+            Console.WriteLine($"Info Tambahan: {tambahanInfo}");
+        }
+
+        public void TampilkanInfo(bool ringkas)
+        { 
+            if (ringkas)
+            {
+                Console.WriteLine($"[{Merk} - {Jenis}]");
+            }
+            else
+            {
+                TampilkanInfo();
+            }
         }
     }
 }
